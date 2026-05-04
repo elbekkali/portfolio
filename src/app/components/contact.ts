@@ -1,14 +1,14 @@
 import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   template: `
-    <!-- Section principale (inchangée visuellement, seul le bouton change) -->
+    <!-- Section principale -->
     <section id="contact" class="py-24 bg-blue-900 rounded-[3rem] my-20 mx-4 overflow-hidden relative">
       <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-blue-800 rounded-full blur-3xl opacity-50"></div>
       <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-emerald-800 rounded-full blur-3xl opacity-30"></div>
@@ -24,7 +24,6 @@ import { Firestore, collection, addDoc } from '@angular/fire/firestore';
         </p>
 
         <div class="flex flex-col md:flex-row items-center justify-center gap-6">
-          <!-- Nouveau bouton qui ouvre la modale -->
           <button (click)="openModal()" 
              class="w-full md:w-auto px-10 py-5 bg-white text-blue-900 font-black rounded-2xl hover:bg-blue-50 transition-all shadow-xl flex items-center justify-center gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,17 +40,9 @@ import { Firestore, collection, addDoc } from '@angular/fire/firestore';
             Profil LinkedIn
           </a>
         </div>
-
-        <div class="mt-12 flex items-center justify-center gap-4 text-blue-200 text-sm">
-          <span class="flex h-3 w-3 relative">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-          </span>
-          Actuellement à l'écoute de nouvelles opportunités
-        </div>
       </div>
 
-      <!-- MODALE (S'affiche uniquement si isModalOpen est vrai) -->
+      <!-- MODALE DE CONTACT -->
       <div *ngIf="isModalOpen()" 
            class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
         
@@ -62,28 +53,47 @@ import { Firestore, collection, addDoc } from '@angular/fire/firestore';
               <button (click)="closeModal()" class="text-slate-400 hover:text-slate-900 text-3xl font-light">&times;</button>
             </div>
 
-            <form (ngSubmit)="sendToFirestore()" #contactForm="ngForm" class="space-y-4">
+            <form [formGroup]="contactForm" (ngSubmit)="sendToFirestore()" class="space-y-4 text-left">
+              <!-- Champ Nom -->
               <div>
-                <label class="block text-sm font-bold text-slate-700 mb-1">Votre Nom</label>
-                <input type="text" name="name" [(ngModel)]="formData.from_name" required
+                <label class="block text-sm font-bold text-slate-700 mb-1">Votre Nom & Prénom</label>
+                <input type="text" formControlName="from_name"
+                       [class.border-red-500]="f['from_name'].invalid && f['from_name'].touched"
                        class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-700 focus:ring-1 focus:ring-blue-700 outline-none transition-all">
-              </div>
-              
-              <div>
-                <label class="block text-sm font-bold text-slate-700 mb-1">Votre Email</label>
-                <input type="email" name="email" [(ngModel)]="formData.reply_to" required
-                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-700 focus:ring-1 focus:ring-blue-700 outline-none transition-all">
+                <p *ngIf="f['from_name'].invalid && f['from_name'].touched" class="text-red-500 text-xs mt-1">
+                  Nom requis (doit contenir des lettres).
+                </p>
               </div>
 
+              <!-- Champ Entreprise -->
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">Entreprise (Optionnel)</label>
+                <input type="text" formControlName="company"
+                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-700 focus:ring-1 focus:ring-blue-700 outline-none transition-all"
+                       placeholder="Ex: Capgemini, Freelance...">
+              </div>
+              
+              <!-- Champ Email -->
+              <div>
+                <label class="block text-sm font-bold text-slate-700 mb-1">Votre Email Professionnel</label>
+                <input type="email" formControlName="reply_to"
+                       [class.border-red-500]="f['reply_to'].invalid && f['reply_to'].touched"
+                       class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-700 focus:ring-1 focus:ring-blue-700 outline-none transition-all">
+                <p *ngIf="f['reply_to'].invalid && f['reply_to'].touched" class="text-red-500 text-xs mt-1">Email valide requis.</p>
+              </div>
+
+              <!-- Champ Message -->
               <div>
                 <label class="block text-sm font-bold text-slate-700 mb-1">Votre Message</label>
-                <textarea name="message" [(ngModel)]="formData.message" rows="4" required
+                <textarea formControlName="message" rows="4"
+                          [class.border-red-500]="f['message'].invalid && f['message'].touched"
                           class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-blue-700 focus:ring-1 focus:ring-blue-700 outline-none transition-all"></textarea>
+                <p *ngIf="f['message'].invalid && f['message'].touched" class="text-red-500 text-xs mt-1">Message de 10 caractères minimum.</p>
               </div>
 
               <button type="submit" 
-                      [disabled]="isSending() || !contactForm.valid"
-                      class="w-full py-4 bg-blue-700 text-white font-black rounded-xl hover:bg-blue-800 disabled:bg-slate-300 transition-all">
+                      [disabled]="isSending() || contactForm.invalid"
+                      class="w-full py-4 bg-blue-700 text-white font-black rounded-xl hover:bg-blue-800 disabled:bg-slate-300 transition-all shadow-lg active:scale-95">
                 {{ isSending() ? 'Envoi en cours...' : 'Envoyer le message' }}
               </button>
 
@@ -100,64 +110,94 @@ import { Firestore, collection, addDoc } from '@angular/fire/firestore';
   `
 })
 export class ContactComponent {
-  // Injection de Firestore
   private firestore = inject(Firestore);
+  private fb = inject(FormBuilder);
 
-  // Utilisation des Signals pour une réactivité optimale (Angular 17+)
+  // Gestion d'état avec Signals (Angular 17+)
   isModalOpen = signal(false);
   isSending = signal(false);
   statusMessage = signal('');
   statusColor = signal('');
 
-  formData = {
-    from_name: '',
-    reply_to: '',
-    message: ''
-  };
+  // Formulaire réactif avec validations strictes
+  contactForm: FormGroup = this.fb.group({
+    from_name: ['', [
+      Validators.required, 
+      Validators.minLength(2),
+      Validators.pattern(/.*[a-zA-ZÀ-ÿ].*/) // Au moins une lettre
+    ]],
+    company: ['', [Validators.minLength(2)]],
+    reply_to: ['', [Validators.required, Validators.email]],
+    message: ['', [Validators.required, Validators.minLength(10)]]
+  });
+
+  // Accès rapide aux contrôles dans le template
+  get f() { return this.contactForm.controls; }
 
   openModal() {
     this.isModalOpen.set(true);
-    document.body.style.overflow = 'hidden'; // Bloque le scroll derrière
+    document.body.style.overflow = 'hidden';
   }
 
   closeModal() {
     this.isModalOpen.set(false);
-    document.body.style.overflow = 'auto'; // Réactive le scroll
+    document.body.style.overflow = 'auto';
     this.statusMessage.set('');
+    this.contactForm.reset();
   }
 
   async sendToFirestore() {
+    if (this.contactForm.invalid) return;
+
     this.isSending.set(true);
     this.statusMessage.set('');
 
+    const v = this.contactForm.value;
+
+    // FONCTION DE NETTOYAGE (Anti-XSS)
+    const sanitize = (text: string) => {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    };
+
+    const safeMessage = sanitize(v.message);
+    const safeName = sanitize(v.from_name);
+    const safeCompany = sanitize(v.company || '');
+
     try {
-      // Enregistrement dans la collection 'mail' pour l'extension Trigger Email
       await addDoc(collection(this.firestore, 'mail'), {
-        to: 'elbekkali23mohamed@gmail.com', // L'adresse qui recevra le mail
+        to: 'elbekkali23mohamed@gmail.com',
         message: {
-          subject: `Contact Portfolio : ${this.formData.from_name}`,
-          text: this.formData.message,
+          subject: `💼 Contact Portfolio : ${safeName}`,
+          text: v.message, // Le texte brut pour la version texte du mail
           html: `
-            <h3>Nouveau message de votre portfolio</h3>
-            <p><strong>De:</strong> ${this.formData.from_name} (${this.formData.reply_to})</p>
-            <p><strong>Message:</strong><br>${this.formData.message}</p>
+            <div style="font-family: sans-serif; line-height: 1.6; color: #333;">
+              <h2>Nouveau message sécurisé</h2>
+              <p><strong>De :</strong> ${safeName}</p>
+              <p><strong>Entreprise :</strong> ${safeCompany || 'Non spécifiée'}</p>
+              <hr>
+              <p><strong>Message :</strong></p>
+              <div style="background: #f9fafb; padding: 15px; border-radius: 8px;">
+                ${safeMessage.replace(/\n/g, '<br>')}
+              </div>
+            </div>
           `
         },
         timestamp: new Date()
       });
 
-      this.statusMessage.set('✅ Message envoyé avec succès !');
+      this.statusMessage.set('✅ Message transmis avec succès !');
       this.statusColor.set('text-emerald-600');
       
-      // Réinitialisation après 2 secondes
-      setTimeout(() => {
-        this.closeModal();
-        this.formData = { from_name: '', reply_to: '', message: '' };
-      }, 2000);
+      setTimeout(() => this.closeModal(), 2000);
 
     } catch (error) {
-      console.error(error);
-      this.statusMessage.set('❌ Erreur lors de l\'envoi.');
+      console.error('Erreur Firestore:', error);
+      this.statusMessage.set('❌ Échec de l\'envoi. Réessayez plus tard.');
       this.statusColor.set('text-red-600');
     } finally {
       this.isSending.set(false);
