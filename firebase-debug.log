@@ -1,0 +1,47 @@
+[debug] [2026-05-04T22:19:46.607Z] ----------------------------------------------------------------------
+[debug] [2026-05-04T22:19:46.611Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ADMIN\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2026-05-04T22:19:46.612Z] CLI Version:   15.16.0
+[debug] [2026-05-04T22:19:46.612Z] Platform:      win32
+[debug] [2026-05-04T22:19:46.612Z] Node Version:  v24.15.0
+[debug] [2026-05-04T22:19:46.612Z] Time:          Tue May 05 2026 00:19:46 GMT+0200 (heure d’été d’Europe centrale)
+[debug] [2026-05-04T22:19:46.613Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-05-04T22:19:48.253Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-05-04T22:19:48.254Z] > authorizing via signed-in user (elbekkali23mohamed@gmail.com)
+[debug] [2026-05-04T22:19:48.254Z] [iam] checking project portfolio-2308 for permissions ["firebase.projects.get"]
+[debug] [2026-05-04T22:19:48.255Z] Checked if tokens are valid: true, expires at: 1777935300664
+[debug] [2026-05-04T22:19:48.255Z] Checked if tokens are valid: true, expires at: 1777935300664
+[debug] [2026-05-04T22:19:48.257Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-2308:testIamPermissions [none]
+[debug] [2026-05-04T22:19:48.257Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-2308:testIamPermissions  x-goog-user-project=portfolio-2308
+[debug] [2026-05-04T22:19:48.257Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-2308:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2026-05-04T22:19:48.992Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-2308:testIamPermissions 200
+[debug] [2026-05-04T22:19:48.992Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-2308:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2026-05-04T22:19:48.993Z] Checked if tokens are valid: true, expires at: 1777935300664
+[debug] [2026-05-04T22:19:48.993Z] Checked if tokens are valid: true, expires at: 1777935300664
+[debug] [2026-05-04T22:19:48.993Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-2308 [none]
+[debug] [2026-05-04T22:19:49.183Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-2308 200
+[debug] [2026-05-04T22:19:49.184Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-2308 {"projectNumber":"631154532000","projectId":"portfolio-2308","lifecycleState":"ACTIVE","name":"portfolio","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-05-04T16:27:48.051Z"}
+[info] 
+[info] === Serving from 'C:\Users\ADMIN\portfolio'...
+[info] 
+[debug] [2026-05-04T22:19:49.193Z] Checked if tokens are valid: true, expires at: 1777935300664
+[debug] [2026-05-04T22:19:49.193Z] Checked if tokens are valid: true, expires at: 1777935300664
+[debug] [2026-05-04T22:19:49.193Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/portfolio-2308/sites 
+[debug] [2026-05-04T22:19:50.571Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/portfolio-2308/sites 200
+[debug] [2026-05-04T22:19:50.571Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/portfolio-2308/sites {"sites":[{"name":"projects/portfolio-2308/sites/portfolio-2308","defaultUrl":"https://portfolio-2308.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2026-05-04T22:19:50.572Z] Checked if tokens are valid: true, expires at: 1777935300664
+[debug] [2026-05-04T22:19:50.572Z] Checked if tokens are valid: true, expires at: 1777935300664
+[debug] [2026-05-04T22:19:50.573Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-2308/webApps/-/config [none]
+[debug] [2026-05-04T22:19:51.174Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-2308/webApps/-/config 200
+[debug] [2026-05-04T22:19:51.174Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-2308/webApps/-/config {"projectId":"portfolio-2308","appId":"1:631154532000:web:3bca32516fdff9ece433c5","storageBucket":"portfolio-2308.firebasestorage.app","apiKey":"AIzaSyAMIlm3W8Q5fOaQo9491LH5Phb6CKzHZTk","authDomain":"portfolio-2308.firebaseapp.com","messagingSenderId":"631154532000","projectNumber":"631154532000","version":"2"}
+[debug] [2026-05-04T22:19:51.192Z] Checked if tokens are valid: true, expires at: 1777935300664
+[debug] [2026-05-04T22:19:51.192Z] Checked if tokens are valid: true, expires at: 1777935300664
+[debug] [2026-05-04T22:19:51.193Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-2308 [none]
+[debug] [2026-05-04T22:19:51.431Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-2308 200
+[debug] [2026-05-04T22:19:51.431Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-2308 {"projectId":"portfolio-2308","projectNumber":"631154532000","displayName":"portfolio","name":"projects/portfolio-2308","resources":{"hostingSite":"portfolio-2308"},"state":"ACTIVE","etag":"1_1d2bb220-d079-4dda-b2c8-41ab8e2a9a30"}
+[info] i  hosting[portfolio-2308]: Serving hosting files from: dist/portfolio/browser {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mdist/portfolio/browser\u001b[22m"}}
+[info] +  hosting[portfolio-2308]: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[info] i  hosting: ::1 - - [04/May/2026:22:19:55 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [04/May/2026:22:19:55 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}}
+[info] i  hosting: ::1 - - [04/May/2026:22:19:55 +0000] "GET /profile.jpg HTTP/1.1" 200 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [04/May/2026:22:19:55 +0000] \"GET /profile.jpg HTTP/1.1\" 200 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}}
+[info] i  hosting: ::1 - - [04/May/2026:22:19:56 +0000] "GET /styles-RJD35SWY.css HTTP/1.1" 200 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [04/May/2026:22:19:56 +0000] \"GET /styles-RJD35SWY.css HTTP/1.1\" 200 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}}
+[info] i  hosting: ::1 - - [04/May/2026:22:19:56 +0000] "GET /main-5UACQBCS.js HTTP/1.1" 200 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [04/May/2026:22:19:56 +0000] \"GET /main-5UACQBCS.js HTTP/1.1\" 200 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36\""}}
