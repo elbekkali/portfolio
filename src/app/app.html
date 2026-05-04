@@ -1,13 +1,30 @@
-<main class="min-h-screen bg-linear-to-br from-gray-900 to-black p-8 flex items-center justify-center">
-  <div class="max-w-2xl bg-white/10 backdrop-blur-md rounded-2xl p-10 border border-white/20 shadow-2xl">
-    <h1 class="text-4xl font-black text-white italic">
-      Portfolio <span class="text-emerald-400">v21</span>
-    </h1>
-    <p class="text-gray-400 mt-4 text-lg">
-      EL BEKKALI
-    </p>
-    <div class="mt-6 inline-block px-4 py-2 bg-emerald-500 text-black font-bold rounded-lg uppercase text-xs tracking-widest">
-      Prêt à coder
-    </div>
+<!-- Le Header s'affiche en haut -->
+<app-header></app-header>
+
+<main class="pt-16 min-h-screen bg-slate-50 text-slate-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Zone pour le contenu futur (Hero, Projets, etc.) -->
+    <section class="py-20">
+       <router-outlet></router-outlet>
+       
+       <!-- Placeholder en attendant le Hero -->
+       <div class="mt-10">
+         <h1 class="text-5xl font-extrabold text-slate-900 tracking-tight">
+           Chef de Projets Bancaires <br/>
+           <span class="text-blue-700">& Architecte SI</span>
+         </h1>
+         <p class="mt-6 text-xl text-slate-600 max-w-3xl">
+           Expertise en modernisation Mainframe & transformation digitale au sein du Groupe Crédit Agricole.
+         </p>
+       </div>
+    </section>
+
   </div>
 </main>
+
+<footer class="py-10 border-t border-slate-200 bg-white text-center">
+  <p class="text-slate-500 text-sm font-medium">
+    © 2026 — Expertise SI & Architecture TOGAF 10
+  </p>
+</footer>
