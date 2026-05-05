@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 
-// Enregistrement du plugin GSAP pour le desktop uniquement
 gsap.registerPlugin(MotionPathPlugin);
 
 @Component({
@@ -24,12 +23,12 @@ gsap.registerPlugin(MotionPathPlugin);
 
         <div class="relative bg-white border border-slate-100 rounded-3xl p-6 md:p-12 shadow-sm backdrop-blur-sm min-h-[400px]">
           
-          <div class="block md:hidden relative pl-16 space-y-8 before:absolute before:top-7 before:bottom-[40px] before:left-[27px] before:w-0.5 before:bg-slate-200 before:z-0">
+          <div class="block md:hidden relative pl-16 space-y-8 before:absolute before:top-7 before:bottom-[28px] before:left-[27px] before:w-0.5 before:bg-slate-200 before:z-0">
             
-            <div class="mobile-flow-dot"></div>
+            <div #mobileDot class="mobile-flow-dot"></div>
 
             <div class="relative flex items-start">
-              <div class="absolute -left-16 flex items-center justify-center w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 text-blue-600 font-bold shadow-sm bg-white z-10">
+              <div #stepPC class="absolute -left-16 flex items-center justify-center w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 text-blue-600 font-bold shadow-sm bg-white z-10">
                 💻
               </div>
               <div class="w-full bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-sm">
@@ -77,7 +76,7 @@ gsap.registerPlugin(MotionPathPlugin);
             </div>
 
             <div class="relative flex items-start">
-              <div class="absolute -left-16 flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 font-bold shadow-sm bg-white z-10">
+              <div #stepLive class="absolute -left-16 flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 font-bold shadow-sm bg-white z-10">
                 🌐
               </div>
               <div class="w-full bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-sm">
@@ -214,47 +213,63 @@ gsap.registerPlugin(MotionPathPlugin);
     .node { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
     .node:hover { transform: translateY(-3px); }
 
-    /* Animation CSS exclusive pour la particule en vue Mobile */
+    /* Particule Mobile : l'animation CSS superflue a été retirée pour laisser GSAP la gérer au pixel près */
     .mobile-flow-dot {
       position: absolute;
-      left: 25px; /* Aligné au centre exact de la ligne de 2px */
+      left: 25px;
       width: 6px;
       height: 6px;
       background-color: #2563eb;
       border-radius: 50%;
       box-shadow: 0 0 8px #2563eb, 0 0 12px #2563eb;
       z-index: 20;
-      animation: mobileFlowAnimation 4.5s infinite linear;
-    }
-
-    @keyframes mobileFlowAnimation {
-      0% {
-        top: 28px; /* Centre exact de l'icône PC */
-        opacity: 0;
-      }
-      5% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      98%, 100% {
-        top: calc(100% - 40px); /* Voyage parfait calqué sur la hauteur totale dynamique */
-        opacity: 0;
-      }
+      opacity: 0;
     }
   `]
 })
 export class PortfolioArchitectureComponent implements AfterViewInit {
   private svg = viewChild<ElementRef<SVGElement>>('svgContainer');
+  
+  // Références d'ancrages pour calculer dynamiquement la course sur mobile
+  private mobileDot = viewChild<ElementRef<HTMLDivElement>>('mobileDot');
+  private stepPC = viewChild<ElementRef<HTMLDivElement>>('stepPC');
+  private stepLive = viewChild<ElementRef<HTMLDivElement>>('stepLive');
 
   ngAfterViewInit(): void {
-    // Initialisation uniquement si le SVG Desktop est actif à l'écran
     setTimeout(() => {
+      // 1. Initialisation Animation Mobile si on est sur écran mobile
+      if (this.mobileDot() && this.stepPC() && this.stepLive()) {
+        this.initMobileFlowAnimation();
+      }
+      // 2. Initialisation Animation Desktop si actif
       if (document.getElementById('single-packet')) {
         this.initSinglePacketAnimation();
       }
-    }, 150);
+    }, 200);
+  }
+
+  private initMobileFlowAnimation(): void {
+    const dot = this.mobileDot()?.nativeElement;
+    const firstIcon = this.stepPC()?.nativeElement;
+    const lastIcon = this.stepLive()?.nativeElement;
+
+    if (!dot || !firstIcon || !lastIcon) return;
+
+    // Calcul magique : mesure l'écart vertical exact en pixels entre le centre du PC et le centre du Globe 
+    const startY = firstIcon.offsetTop + 28;
+    const endY = lastIcon.offsetTop + 28;
+
+    // Timeline infinie GSAP pour la bille bleue sur Mobile
+    gsap.timeline({ repeat: -1 })
+      .set(dot, { y: startY, opacity: 0 })
+      .to(dot, { duration: 0.3, opacity: 1 })
+      .to(dot, { 
+        duration: 3.8, 
+        y: endY, 
+        ease: "none" 
+      })
+      .to(dot, { duration: 0.3, opacity: 0 })
+      .to({}, { duration: 0.5 }); // Petite pause avant de relancer le flux
   }
 
   private initSinglePacketAnimation(): void {
