@@ -24,7 +24,7 @@ gsap.registerPlugin(MotionPathPlugin);
 
         <div class="relative bg-white border border-slate-100 rounded-3xl p-6 md:p-12 shadow-sm backdrop-blur-sm min-h-[400px]">
           
-          <div class="block md:hidden relative pl-16 space-y-8 before:absolute before:top-7 before:bottom-[calc(100%-372px)] before:left-[27px] before:w-0.5 before:bg-slate-200 before:z-0">
+          <div class="block md:hidden relative pl-16 space-y-8 before:absolute before:top-7 before:bottom-[40px] before:left-[27px] before:w-0.5 before:bg-slate-200 before:z-0">
             
             <div class="mobile-flow-dot"></div>
 
@@ -235,11 +235,11 @@ gsap.registerPlugin(MotionPathPlugin);
       5% {
         opacity: 1;
       }
-      85% {
+      90% {
         opacity: 1;
       }
-      90%, 100% {
-        top: 372px; /* Fin du voyage ajustée : descend parfaitement jusqu'au centre de l'icône 🌐 */
+      98%, 100% {
+        top: calc(100% - 40px); /* Voyage parfait calqué sur la hauteur totale dynamique */
         opacity: 0;
       }
     }
