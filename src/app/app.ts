@@ -4,12 +4,13 @@ import { HeaderComponent } from './components/header';
 import {ExpertiseComponent }  from './components/expertise';
 import {TrustBarComponent} from './components/trust-bar'; 
 import {ParcoursComponent} from './components/parcours';
+import {FormationsComponent} from './components/formations';
 import { ToolsComponent } from './components/tools';
 import { ContactComponent } from './components/contact';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, ExpertiseComponent, TrustBarComponent, ParcoursComponent, ToolsComponent, ContactComponent],
+  imports: [RouterOutlet, HeaderComponent, ExpertiseComponent, TrustBarComponent, FormationsComponent, ParcoursComponent, ToolsComponent, ContactComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
