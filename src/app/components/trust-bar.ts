@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-trust-bar',
   standalone: true,
   template: `
-    <div class="py-8 border-y border-slate-200 bg-white/50 mb-12">
+    <div class="py-12 border-b border-slate-200 bg-white/50">
       <div class="max-w-7xl mx-auto px-4">
         <p class="text-center text-xs font-semibold text-slate-400 uppercase tracking-[0.2em] mb-8">
           Expertise éprouvée au sein d'environnements critiques

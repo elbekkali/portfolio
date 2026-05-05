@@ -6,15 +6,14 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section id="parcours" class="py-20 bg-slate-50">
-      <div class="max-w-4xl mx-auto">
+    <section id="parcours" class="py-20 border-b border-slate-200">
+      <div class="max-w-4xl mx-auto px-4">
         <div class="text-center mb-16">
           <h2 class="text-3xl font-bold text-slate-900">Parcours & Impact</h2>
           <p class="text-slate-500 mt-2 font-medium italic">15 ans au service de la transformation des SI bancaires</p>
         </div>
 
         <div class="relative border-l-2 border-blue-200 ml-4 md:ml-0 md:left-1/2">
-          <!-- Expérience CATS -->
           <div class="mb-12 relative">
             <div class="md:absolute md:-left-4 top-0 w-8 h-8 bg-blue-700 rounded-full border-4 border-white shadow-sm z-10"></div>
             <div class="md:ml-12 ml-8 md:w-[400px] bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-300 transition-colors">
@@ -38,7 +37,6 @@ import { CommonModule } from '@angular/common';
             </div>
           </div>
 
-          <!-- Expérience Précédente / Architecture -->
           <div class="mb-12 relative">
             <div class="md:absolute md:-left-4 top-0 w-8 h-8 bg-slate-300 rounded-full border-4 border-white shadow-sm z-10"></div>
             <div class="md:-ml-[440px] ml-8 md:w-[400px] bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
