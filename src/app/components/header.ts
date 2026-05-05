@@ -24,12 +24,13 @@ import { CommonModule } from '@angular/common';
 
         <div class="hidden md:flex space-x-8 items-center font-semibold text-slate-600">
           <a href="#expertise" class="hover:text-blue-700 transition-colors">Expertise</a>
-          <a href="#parcours" class="hover:text-blue-700 transition-colors">Parcours</a>
           <a href="#formations" class="hover:text-blue-700 transition-colors">Formations</a>
-          <a href="#tools" class="hover:text-blue-700 transition-colors">Méthodologies</a>
+          <a href="#parcours" class="hover:text-blue-700 transition-colors">Parcours</a>          
+          <a href="#gouvernance" class="hover:text-blue-700 transition-colors">Gouvernance</a>
+          <a href="#technologies" class="hover:text-blue-700 transition-colors">Technologies</a>    
           
           <a href="#contact" 
-             class="px-5 py-2 bg-blue-700 text-white rounded-full text-sm shadow-lg shadow-blue-700/20 hover:bg-blue-800 hover:scale-105 transition-all">
+            class="px-5 py-2 bg-blue-700 text-white rounded-full text-sm shadow-lg shadow-blue-700/20 hover:bg-blue-800 hover:scale-105 transition-all">
             Me contacter
           </a>
         </div>

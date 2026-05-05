@@ -6,12 +6,13 @@ import { ExpertiseComponent }  from './components/expertise';
 import { TrustBarComponent } from './components/trust-bar'; 
 import { ParcoursComponent } from './components/parcours';
 import { FormationsComponent } from './components/formations';
-import { ToolsComponent } from './components/tools';
+import { MethodologieComponent } from './components/methodologie';
+import { EcosystemeComponent } from './components/ecosysteme';
 import { ContactComponent } from './components/contact';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, HeroComponent, ExpertiseComponent, TrustBarComponent, FormationsComponent, ParcoursComponent, ToolsComponent, ContactComponent],
+  imports: [RouterOutlet, HeaderComponent, HeroComponent, ExpertiseComponent, TrustBarComponent, FormationsComponent, ParcoursComponent, MethodologieComponent, EcosystemeComponent, ContactComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

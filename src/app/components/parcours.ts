@@ -8,9 +8,11 @@ import { CommonModule } from '@angular/common';
   template: `
     <section id="parcours" class="py-20 border-b border-slate-200">
       <div class="max-w-4xl mx-auto px-4">
+        
         <div class="text-center mb-16">
           <h2 class="text-3xl font-bold text-slate-900">Parcours & Impact</h2>
-          <p class="text-slate-500 mt-2 font-medium italic">15 ans au service de la transformation des SI bancaires</p>
+          <div class="h-1 w-20 bg-blue-700 mx-auto mt-4 rounded-full"></div>
+          <p class="text-slate-500 mt-4 font-medium italic">15 ans au service de la transformation des SI bancaires</p>
         </div>
 
         <div class="relative border-l-2 border-blue-200 ml-4 md:ml-0 md:left-1/2">
