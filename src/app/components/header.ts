@@ -22,12 +22,17 @@ import { CommonModule } from '@angular/common';
           </span>
         </a>
 
-        <div class="hidden md:flex space-x-8 items-center font-semibold text-slate-600">
+        <div class="hidden md:flex space-x-7 items-center font-semibold text-slate-600 text-sm">
           <a href="#expertise" class="hover:text-blue-700 transition-colors">Expertise</a>
           <a href="#parcours" class="hover:text-blue-700 transition-colors">Parcours</a>          
           <a href="#gouvernance" class="hover:text-blue-700 transition-colors">Gouvernance</a>
           <a href="#technologies" class="hover:text-blue-700 transition-colors">Technologies</a>    
           <a href="#formations" class="hover:text-blue-700 transition-colors">Formations</a>
+          
+          <a href="#architecture" 
+             class="text-blue-700 bg-blue-50/80 px-2.5 py-1 rounded-md hover:bg-blue-100 font-bold tracking-wide transition-all">
+            Architecture du site
+          </a>
           
           <a href="#contact" 
             class="px-5 py-2 bg-blue-700 text-white rounded-full text-sm shadow-lg shadow-blue-700/20 hover:bg-blue-800 hover:scale-105 transition-all">
@@ -53,6 +58,9 @@ import { CommonModule } from '@angular/common';
         <a href="#gouvernance" (click)="closeMenu()" class="block font-semibold text-slate-600 hover:text-blue-700">Gouvernance</a>
         <a href="#technologies" (click)="closeMenu()" class="block font-semibold text-slate-600 hover:text-blue-700">Technologies</a>
         <a href="#formations" (click)="closeMenu()" class="block font-semibold text-slate-600 hover:text-blue-700">Formations</a>
+        
+        <a href="#architecture" (click)="closeMenu()" class="block font-bold text-blue-700 bg-blue-50/50 p-2 rounded-lg">Architecture du site</a>
+        
         <hr class="border-slate-100">
         <a href="#contact" (click)="closeMenu()" 
            class="inline-block w-full text-center px-5 py-3 bg-blue-700 text-white rounded-xl font-bold shadow-lg shadow-blue-700/20 active:scale-95 transition-transform">

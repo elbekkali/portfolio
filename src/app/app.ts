@@ -8,11 +8,12 @@ import { ParcoursComponent } from './components/parcours';
 import { FormationsComponent } from './components/formations';
 import { MethodologieComponent } from './components/methodologie';
 import { EcosystemeComponent } from './components/ecosysteme';
+import { PortfolioArchitectureComponent } from './components/portfolio-architecture';
 import { ContactComponent } from './components/contact';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, HeroComponent, ExpertiseComponent, TrustBarComponent, FormationsComponent, ParcoursComponent, MethodologieComponent, EcosystemeComponent, ContactComponent],
+  imports: [RouterOutlet, HeaderComponent, HeroComponent, ExpertiseComponent, TrustBarComponent, FormationsComponent, ParcoursComponent, MethodologieComponent, EcosystemeComponent, PortfolioArchitectureComponent, ContactComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
