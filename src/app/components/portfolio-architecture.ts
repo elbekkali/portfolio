@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 
-// Enregistrement du plugin GSAP pour la gestion des trajectoires
+// Enregistrement du plugin GSAP pour le desktop uniquement
 gsap.registerPlugin(MotionPathPlugin);
 
 @Component({
@@ -24,13 +24,15 @@ gsap.registerPlugin(MotionPathPlugin);
 
         <div class="relative bg-white border border-slate-100 rounded-3xl p-6 md:p-12 shadow-sm backdrop-blur-sm min-h-[400px]">
           
-          <div class="block md:hidden space-y-8 relative before:absolute before:top-4 before:bottom-4 before:left-[27px] before:w-0.5 before:bg-slate-200">
+          <div class="block md:hidden relative pl-16 space-y-8 before:absolute before:top-7 before:bottom-[calc(100%-372px)] before:left-[27px] before:w-0.5 before:bg-slate-200 before:z-0">
             
-            <div class="relative flex items-start gap-4">
-              <div class="z-10 flex items-center justify-center w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 text-blue-600 font-bold shrink-0 shadow-sm">
+            <div class="mobile-flow-dot"></div>
+
+            <div class="relative flex items-start">
+              <div class="absolute -left-16 flex items-center justify-center w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 text-blue-600 font-bold shadow-sm bg-white z-10">
                 💻
               </div>
-              <div class="flex-1 bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-sm">
+              <div class="w-full bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-sm">
                 <div class="flex justify-between items-center mb-2">
                   <h4 class="font-black text-slate-950 text-xs tracking-wide uppercase">Poste de Travail</h4>
                   <span class="text-[9px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-bold uppercase">Dev Zone</span>
@@ -45,57 +47,45 @@ gsap.registerPlugin(MotionPathPlugin);
               </div>
             </div>
 
-            <div class="pl-16 -my-4">
-              <span class="inline-block text-[9px] font-black tracking-widest text-slate-400 uppercase">⬇️ Commit & Push</span>
-            </div>
-
-            <div class="relative flex items-start gap-4">
-              <div class="z-10 flex items-center justify-center w-14 h-14 rounded-2xl bg-slate-950 text-white font-bold shrink-0 shadow-md">
+            <div class="relative flex items-start">
+              <div class="absolute -left-16 flex items-center justify-center w-14 h-14 rounded-2xl bg-slate-950 text-white font-bold shadow-md z-10">
                 <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577v-2.234c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.82 1.102.82 2.222v3.293c0 .319.22.694.825.576C20.565 21.795 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
               </div>
-              <div class="flex-1 bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-sm">
+              <div class="w-full bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-sm">
                 <div class="flex justify-between items-center mb-2">
                   <h4 class="font-black text-slate-950 text-xs tracking-wide uppercase">GitHub</h4>
                   <span class="text-[9px] bg-slate-200 text-slate-800 px-2 py-0.5 rounded-full font-bold uppercase">Repository</span>
                 </div>
-                <p class="text-[11px] text-slate-600 font-medium">Gestion du code source (Private Repo) et orchestration des workflows automatisés de vérification via <strong>GitHub Actions</strong>.</p>
+                <p class="text-[11px] text-slate-600 font-medium">Gestion du code source (Private Repo) et orchestration des workflows automatisés via <strong>GitHub Actions</strong>.</p>
               </div>
             </div>
 
-            <div class="pl-16 -my-4">
-              <span class="inline-block text-[9px] font-black tracking-widest text-slate-400 uppercase">⬇️ CI / CD Deploy</span>
-            </div>
-
-            <div class="relative flex items-start gap-4">
-              <div class="z-10 flex items-center justify-center w-14 h-14 rounded-2xl bg-orange-50 border border-orange-200 text-orange-500 font-bold shrink-0 shadow-sm">
+            <div class="relative flex items-start">
+              <div class="absolute -left-16 flex items-center justify-center w-14 h-14 rounded-2xl bg-orange-50 border border-orange-200 text-orange-500 font-bold shadow-sm bg-white z-10">
                 🔥
               </div>
-              <div class="flex-1 bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-sm">
+              <div class="w-full bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-sm">
                 <div class="flex justify-between items-center mb-2">
                   <h4 class="font-black text-slate-950 text-xs tracking-wide uppercase">Firebase</h4>
                   <span class="text-[9px] bg-orange-100 text-orange-800 px-2 py-0.5 rounded-full font-bold uppercase">Cloud Hosting</span>
                 </div>
-                <p class="text-[11px] text-slate-600 font-medium mb-2">Hébergement sécurisé global, base de données Firestore NoSQL et exécution d'extensions cloud.</p>
+                <p class="text-[11px] text-slate-600 font-medium mb-2">Hébergement mondial sécurisé, base NoSQL Firestore et logique serveur asynchrone.</p>
                 <div class="inline-flex items-center gap-1 text-[10px] bg-orange-100/60 text-orange-800 font-bold px-2 py-0.5 rounded-md">
                   📧 Extension Trigger Email Activée
                 </div>
               </div>
             </div>
 
-            <div class="pl-16 -my-4">
-              <span class="inline-block text-[9px] font-black tracking-widest text-slate-400 uppercase">⬇️ Consultation</span>
-            </div>
-
-            <div class="relative flex items-start gap-4">
-              <div class="z-10 flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 font-bold shrink-0 shadow-sm">
+            <div class="relative flex items-start">
+              <div class="absolute -left-16 flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 font-bold shadow-sm bg-white z-10">
                 🌐
               </div>
-              <div class="flex-1 bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-sm">
+              <div class="w-full bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-sm">
                 <div class="flex justify-between items-center mb-2">
                   <h4 class="font-black text-slate-950 text-xs tracking-wide uppercase">Public Live</h4>
                   <span class="text-[9px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold uppercase">Production</span>
                 </div>
-                <p class="text-[11px] text-slate-600 font-medium">Application Web Progressive (PWA) disponible instantanément pour l'utilisateur final de manière sécurisée (HTTPS/SSL).</p>
+                <p class="text-[11px] text-slate-600 font-medium">Application Web Progressive (PWA) disponible instantanément pour l'utilisateur final en HTTPS/SSL.</p>
               </div>
             </div>
 
@@ -103,7 +93,6 @@ gsap.registerPlugin(MotionPathPlugin);
 
           <div class="hidden md:block">
             <svg #svgContainer viewBox="0 0 960 360" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
-              
               <defs>
                 <filter id="glow-light" x="-30%" y="-30%" width="160%" height="160%">
                   <feGaussianBlur stdDeviation="2.5" result="blur" />
@@ -163,7 +152,6 @@ gsap.registerPlugin(MotionPathPlugin);
                 <g transform="translate(388, 127) scale(0.18)">
                   <path fill="#181717" d="M64 0C28.7 0 0 28.7 0 64c0 28.2 18.3 52.2 43.7 60.7 3.2.6 4.4-1.4 4.4-3.1 0-1.5-.1-5.6-.1-11-17.8 3.9-21.6-8.6-21.6-8.6-2.9-7.4-7.1-9.4-7.1-9.4-5.8-4 .4-3.9.4-3.9 6.4.5 9.8 6.6 9.8 6.6 5.7 9.8 15.1 7 18.8 5.3.6-4.1 2.2-7 4-8.6-14.2-1.6-29.2-7.1-29.2-31.7 0-7 2.5-12.7 6.6-17.2-.6-1.6-2.9-8.2.6-17 0 0 5.4-1.7 17.6 6.6 5.1-1.4 10.6-2.2 16-2.2s10.9.8 16 2.2c12.2-8.3 17.6-6.6 17.6-6.6 3.5 8.8 1.2 15.4.6 17 4.1 4.5 6.6 10.2 6.6 17.2 0 24.7-15 30-29.3 31.6 2.3 2 4.4 6 4.4 12.1 0 8.7-.1 15.8-.1 18 0 1.7 1.1 3.7 4.4 3.1C109.7 116.2 128 92.2 128 64c0-35.3-28.7-64-64-64z"/>
                 </g>
-
                 <text x="400" y="180" text-anchor="middle" class="fill-slate-600 font-bold text-[10px]">Dépôt distant</text>
                 <text x="400" y="195" text-anchor="middle" class="fill-slate-400 font-medium text-[9px]">Actions Pipeline</text>
               </g>
@@ -178,15 +166,7 @@ gsap.registerPlugin(MotionPathPlugin);
                   <path fill="#FFA000" d="M46.4 45.4L33.2 19.6c-.6-1.1-2.2-1.1-2.7 0L24.8 30.6l21.6 14.8z"/>
                   <path fill="#F57C00" d="M16.2 46.8L1.6 77.2c-.7 1.4.3 3 1.9 2.8l42.9-34.6-40-38.6z"/>
                   <path fill="#FF7400" d="M46.4 45.4L3.5 1.4C2.4.3.7.8.6 2.3L16.2 46.8l30.2-1.4z"/>
-                  
-                  <g transform="translate(-10, 60) scale(1.3)">
-                    <rect x="2" y="2" width="20" height="14" rx="2" class="stroke-orange-400 fill-white" stroke-width="2"/>
-                    <path d="M2 2 L12 10 L22 2" class="stroke-orange-400 fill-none" stroke-width="2"/>
-                    <circle cx="20" cy="14" r="4" class="fill-orange-500 stroke-white" stroke-width="1"/>
-                    <path d="M20 12 L20 16 M18 14 L22 14" class="stroke-white" stroke-width="1"/>
-                  </g>
                 </g>
-
                 <text x="620" y="177" text-anchor="middle" class="fill-slate-600 font-bold text-[9px]">Cloud Hosting</text>
                 <text x="620" y="192" text-anchor="middle" class="fill-orange-600 font-black text-[8px] tracking-wide uppercase">Trigger Email Ext.</text>
               </g>
@@ -202,7 +182,6 @@ gsap.registerPlugin(MotionPathPlugin);
                   <line x1="15" y1="20" x2="15" y2="23" class="stroke-emerald-600" stroke-width="2"/>
                   <circle cx="23" cy="6" r="1.5" class="fill-emerald-600"/>
                 </g>
-
                 <text x="840" y="180" text-anchor="middle" class="fill-emerald-700 font-bold text-[10px]">PWA App Live</text>
                 <text x="840" y="195" text-anchor="middle" class="fill-slate-400 font-medium text-[9px]">HTTPS / Secure</text>
               </g>
@@ -234,18 +213,48 @@ gsap.registerPlugin(MotionPathPlugin);
     :host { display: block; }
     .node { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
     .node:hover { transform: translateY(-3px); }
+
+    /* Animation CSS exclusive pour la particule en vue Mobile */
+    .mobile-flow-dot {
+      position: absolute;
+      left: 25px; /* Aligné au centre exact de la ligne de 2px */
+      width: 6px;
+      height: 6px;
+      background-color: #2563eb;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #2563eb, 0 0 12px #2563eb;
+      z-index: 20;
+      animation: mobileFlowAnimation 4.5s infinite linear;
+    }
+
+    @keyframes mobileFlowAnimation {
+      0% {
+        top: 28px; /* Centre exact de l'icône PC */
+        opacity: 0;
+      }
+      5% {
+        opacity: 1;
+      }
+      85% {
+        opacity: 1;
+      }
+      90%, 100% {
+        top: 372px; /* Fin du voyage ajustée : descend parfaitement jusqu'au centre de l'icône 🌐 */
+        opacity: 0;
+      }
+    }
   `]
 })
 export class PortfolioArchitectureComponent implements AfterViewInit {
   private svg = viewChild<ElementRef<SVGElement>>('svgContainer');
 
   ngAfterViewInit(): void {
-    // On n'active l'animation que si l'élément SVG est présent (donc uniquement sur écran Desktop)
+    // Initialisation uniquement si le SVG Desktop est actif à l'écran
     setTimeout(() => {
       if (document.getElementById('single-packet')) {
         this.initSinglePacketAnimation();
       }
-    }, 120);
+    }, 150);
   }
 
   private initSinglePacketAnimation(): void {
@@ -255,7 +264,6 @@ export class PortfolioArchitectureComponent implements AfterViewInit {
     const mainTimeline = gsap.timeline({ repeat: -1 });
 
     mainTimeline
-      // --- SEGMENT 1 : Dev -> GitHub ---
       .set(packet, { opacity: 1 })
       .to(packet, {
         duration: 1.5,
@@ -267,8 +275,6 @@ export class PortfolioArchitectureComponent implements AfterViewInit {
         ease: "power1.inOut"
       })
       .set(packet, { opacity: 0 })
-
-      // --- SEGMENT 2 : GitHub -> Firebase ---
       .to({}, { duration: 0.3 })
       .set(packet, { opacity: 1 })
       .to(packet, {
@@ -281,8 +287,6 @@ export class PortfolioArchitectureComponent implements AfterViewInit {
         ease: "none"
       })
       .set(packet, { opacity: 0 })
-
-      // --- SEGMENT 3 : Firebase -> Public Live ---
       .to({}, { duration: 0.4 })
       .set(packet, { opacity: 1 })
       .to(packet, {
