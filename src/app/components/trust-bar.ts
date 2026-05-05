@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
         <p class="text-center text-xs font-semibold text-slate-400 uppercase tracking-[0.2em] mb-8">
           Expertise éprouvée au sein d'environnements critiques
         </p>
-        <div class="flex flex-wrap justify-center items-center gap-8 md:gap-14 opacity-60">
+        <div class="flex flex-wrap justify-center items-center gap-8 md:gap-8 lg:gap-10 opacity-60">
           
           <div class="flex flex-col items-center group cursor-help">
             <span class="text-xl font-bold text-slate-700 group-hover:text-[#00707B] transition-colors italic">Crédit Agricole</span>
@@ -49,6 +49,21 @@ import { Component } from '@angular/core';
           <div class="flex flex-col items-center group cursor-help">
             <span class="text-xl font-extrabold text-slate-700 group-hover:text-[#326CE5] transition-colors tracking-tighter">K8S / DOCKER / HELM</span>
             <span class="text-[10px] text-slate-400 font-medium tracking-widest mt-1">CONTAINER & INFRA</span>
+          </div>
+
+          <div class="flex flex-col items-center group cursor-help">
+            <span class="text-xl font-black text-slate-700 group-hover:text-[#F46324] transition-colors tracking-tight">ELK / GRAFANA</span>
+            <span class="text-[10px] text-slate-400 font-medium tracking-widest mt-1">OBSERVABILITÉ</span>
+          </div>
+
+          <div class="flex flex-col items-center group cursor-help">
+            <span class="text-xl font-black text-slate-700 group-hover:text-[#00A3E0] transition-colors tracking-tight">JUNIT / POSTMAN</span>
+            <span class="text-[10px] text-slate-400 font-medium tracking-widest mt-1">TESTS & QUALITÉ</span>
+          </div>
+
+          <div class="flex flex-col items-center group cursor-help">
+            <span class="text-xl font-black text-slate-700 group-hover:text-[#0052CC] transition-colors tracking-tight">JIRA / AGILE</span>
+            <span class="text-[10px] text-slate-400 font-medium tracking-widest mt-1">PILOTAGE & METHODES</span>
           </div>
 
           <div class="flex flex-col items-center group cursor-help">
