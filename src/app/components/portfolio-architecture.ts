@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 
+// Enregistrement du plugin GSAP pour le desktop uniquement
 gsap.registerPlugin(MotionPathPlugin);
 
 @Component({
@@ -25,10 +26,10 @@ gsap.registerPlugin(MotionPathPlugin);
           
           <div class="block md:hidden relative pl-16 space-y-8 before:absolute before:top-7 before:bottom-[28px] before:left-[27px] before:w-0.5 before:bg-slate-200 before:z-0">
             
-            <div #mobileDot class="mobile-flow-dot"></div>
+            <div class="mobile-flow-dot"></div>
 
             <div class="relative flex items-start">
-              <div #stepPC class="absolute -left-16 flex items-center justify-center w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 text-blue-600 font-bold shadow-sm bg-white z-10">
+              <div class="absolute -left-16 flex items-center justify-center w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 text-blue-600 font-bold shadow-sm bg-white z-10">
                 💻
               </div>
               <div class="w-full bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-sm">
@@ -76,7 +77,7 @@ gsap.registerPlugin(MotionPathPlugin);
             </div>
 
             <div class="relative flex items-start">
-              <div #stepLive class="absolute -left-16 flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 font-bold shadow-sm bg-white z-10">
+              <div class="absolute -left-16 flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 font-bold shadow-sm bg-white z-10">
                 🌐
               </div>
               <div class="w-full bg-slate-50 border border-slate-100 rounded-2xl p-4 shadow-sm">
@@ -213,7 +214,7 @@ gsap.registerPlugin(MotionPathPlugin);
     .node { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
     .node:hover { transform: translateY(-3px); }
 
-    /* Particule Mobile : l'animation CSS superflue a été retirée pour laisser GSAP la gérer au pixel près */
+    /* Animation CSS exclusive pour la particule en vue Mobile */
     .mobile-flow-dot {
       position: absolute;
       left: 25px;
@@ -223,53 +224,37 @@ gsap.registerPlugin(MotionPathPlugin);
       border-radius: 50%;
       box-shadow: 0 0 8px #2563eb, 0 0 12px #2563eb;
       z-index: 20;
-      opacity: 0;
+      animation: mobileFlowAnimation 4.5s infinite linear;
+    }
+
+    @keyframes mobileFlowAnimation {
+      0% {
+        top: 28px;
+        opacity: 0;
+      }
+      5% {
+        opacity: 1;
+      }
+      92% {
+        opacity: 1;
+      }
+      98%, 100% {
+        top: calc(100% - 28px);
+        opacity: 0;
+      }
     }
   `]
 })
 export class PortfolioArchitectureComponent implements AfterViewInit {
   private svg = viewChild<ElementRef<SVGElement>>('svgContainer');
-  
-  // Références d'ancrages pour calculer dynamiquement la course sur mobile
-  private mobileDot = viewChild<ElementRef<HTMLDivElement>>('mobileDot');
-  private stepPC = viewChild<ElementRef<HTMLDivElement>>('stepPC');
-  private stepLive = viewChild<ElementRef<HTMLDivElement>>('stepLive');
 
   ngAfterViewInit(): void {
+    // Initialisation uniquement si le SVG Desktop est actif à l'écran
     setTimeout(() => {
-      // 1. Initialisation Animation Mobile si on est sur écran mobile
-      if (this.mobileDot() && this.stepPC() && this.stepLive()) {
-        this.initMobileFlowAnimation();
-      }
-      // 2. Initialisation Animation Desktop si actif
       if (document.getElementById('single-packet')) {
         this.initSinglePacketAnimation();
       }
-    }, 200);
-  }
-
-  private initMobileFlowAnimation(): void {
-    const dot = this.mobileDot()?.nativeElement;
-    const firstIcon = this.stepPC()?.nativeElement;
-    const lastIcon = this.stepLive()?.nativeElement;
-
-    if (!dot || !firstIcon || !lastIcon) return;
-
-    // Calcul magique : mesure l'écart vertical exact en pixels entre le centre du PC et le centre du Globe 
-    const startY = firstIcon.offsetTop + 28;
-    const endY = lastIcon.offsetTop + 28;
-
-    // Timeline infinie GSAP pour la bille bleue sur Mobile
-    gsap.timeline({ repeat: -1 })
-      .set(dot, { y: startY, opacity: 0 })
-      .to(dot, { duration: 0.3, opacity: 1 })
-      .to(dot, { 
-        duration: 3.8, 
-        y: endY, 
-        ease: "none" 
-      })
-      .to(dot, { duration: 0.3, opacity: 0 })
-      .to({}, { duration: 0.5 }); // Petite pause avant de relancer le flux
+    }, 150);
   }
 
   private initSinglePacketAnimation(): void {
